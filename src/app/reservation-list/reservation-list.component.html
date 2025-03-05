@@ -1,0 +1,34 @@
+<app-home></app-home>
+<h3 class="mt-5 mb-2">Reservation List</h3>
+
+
+@if (reservations.length > 0) {
+<table class="table table-striped">
+    <tr>
+        <th>Guest Name</th>
+        <th>Guest Email</th>
+        <th>Room Number</th>
+        <th>Check-In Date</th>
+        <th>Check-Out Date</th>
+        <th>Actions</th>
+    </tr>
+    <tbody>
+    @for (reservation of reservations; track reservation.id) {
+    <tr>
+            <td>{{reservation.guestName}}</td>
+            <td>{{reservation.guestEmail}}</td>
+            <td>{{reservation.roomNumber}}</td>
+            <td>{{reservation.checkInDate}}</td>
+            <td>{{reservation.checkOutDate}}</td>
+            <td>
+                <button class="btn btn-sm btn-danger mx-1" (click)="deleteReservation(reservation.id)">Delete</button>
+                <button class="btn btn-sm btn-secondary mx-1" [routerLink]="['/edit',reservation.id]">Edit</button>
+            </td>
+    </tr>
+    }
+    </tbody>
+</table>
+}@else {
+        <p>No reservations available.</p>
+}
+    
